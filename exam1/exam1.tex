@@ -296,9 +296,9 @@ $A = QR$
 \subsection{Gram-Schmidt}
 $ \mathbf{w}_1 = \mathbf{a}_1 \\ 
    \mathbf{q}_1 = {\mathbf{w}_1 \over \|\mathbf{w}_1\|} \\
- \mathbf{w}_2 = \mathbf{a}_2-\mathrm{proj}_{\mathbf{q}_1}\,\mathbf{a}_2 \\
+ \mathbf{w}_2 = \mathbf{a}_2-\mathrm{proj}_{\mathbf{w}_1}\,\mathbf{a}_2 \\
    \mathbf{q}_2 = {\mathbf{w}_2 \over \|\mathbf{w}_2\|} \\
- \mathbf{w}_3 = \mathbf{a}_3-\mathrm{proj}_{\mathbf{q}_1}\,\mathbf{a}_3-\mathrm{proj}_{\mathbf{q}_2}\,\mathbf{a}_3 \\
+ \mathbf{w}_3 = \mathbf{a}_3-\mathrm{proj}_{\mathbf{w}_1}\,\mathbf{a}_3-\mathrm{proj}_{\mathbf{w}_2}\,\mathbf{a}_3 \\
    \mathbf{q}_3 = {\mathbf{w}_3 \over \|\mathbf{w}_3\|} \\
 $
 \begin{center}
