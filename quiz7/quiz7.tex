@@ -1,0 +1,111 @@
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[landscape,margin=0.1in]{geometry}
+\usepackage{multicol}
+\usepackage{setspace}
+\usepackage[small,compact]{titlesec}
+\usepackage{amsmath}
+\usepackage{xfrac}
+
+%\setlength{\abovedisplayshortskip}{0pt}
+%\setlength{\belowdisplayshortskip}{0pt}
+%\setlength{\abovedisplayskip}{0pt}
+%\setlength{\belowdisplayskip}{0pt}
+
+\newenvironment{tight_item}
+{\begin{itemize}
+\setlength{\parskip}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\itemsep}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\topsep}{0pt}
+\setlength{\partopsep}{0pt}
+\setlength{\leftmargin}{0em}
+\setlength{\labelwidth}{0em}
+\setlength{\labelsep}{1em} }
+{\end{itemize}}
+
+\newenvironment{tight_enum}
+{\begin{enumerate}
+\setlength{\parskip}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\itemsep}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\topsep}{0pt}
+\setlength{\partopsep}{0pt}
+\setlength{\leftmargin}{0em}
+\setlength{\labelwidth}{0em}
+\setlength{\labelsep}{1em} }
+{\end{enumerate}}
+
+\newenvironment{tight_desc}
+{\begin{description}
+\setlength{\parskip}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\itemsep}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\topsep}{0pt}
+\setlength{\partopsep}{0pt}
+\setlength{\leftmargin}{0em}
+\setlength{\labelwidth}{0em}
+\setlength{\labelsep}{1em} }
+{\end{description}}
+
+\begin{document}
+\footnotesize{
+
+\begin{multicols*}{2}
+
+\section{Iterative Methods}
+In the proceeding methods, start the algorithm with the following:
+\begin{tight_enum}
+\item \texttt{A = <A>}
+\item \texttt{b = <b>}
+\item \texttt{x = \{ \{0\}, \{0\} \} }
+\end{tight_enum}
+Then enter algorithm code. Repeat algorithm code to make an iteration.
+
+\subsection{Jacobi}
+\begin{tight_item}
+\item $x^{n} = -D^{-1}(U + L)x^{n-1}+ D^{-1}b$
+\item $\operatorname{CR} = -D^{-1}(U+L)$
+\end{tight_item}
+\begin{tight_desc}
+\item[Algorithm Code] \texttt{x = (-Inverse[DiagonalMatrix[Diagonal[A]]] .\\(UpperTriangularize[A, 1] + LowerTriangularize[A, -1]) . N[x]) +\\(Inverse[DiagonalMatrix[Diagonal[A]]] . b)}
+\item[CR Code] \texttt{Max[Abs[Eigenvalues[-Inverse[DiagonalMatrix[Diagonal[A]]] .\\(UpperTriangularize[A, 1] + LowerTriangularize[A, -1])]]]}
+\end{tight_desc}
+
+\subsection{Gauss-Seidel}
+\begin{tight_item}
+\item $x^{n} = (L+D)^{-1}(b-Ux^{n-1})$
+\item $\operatorname{CR} = -(L+D)^{-1}U$
+\end{tight_item}
+\begin{tight_desc}
+\item[Algorithm Code] \texttt{x = (Inverse[LowerTriangularize[A, -1] +\\DiagonalMatrix[Diagonal[A]]]) .\\(b - (UpperTriangularize[A, 1] . N[x]))}
+\item[CR Code] \texttt{Max[Abs[Eigenvalues[ -Inverse[L + D] . U]]]}
+\end{tight_desc}
+
+\subsection{Convergence Rate (CR)}
+\begin{tight_item}
+\item Measures rate of convergence per iteration of algorithm towards true values
+\item The greater the CR, the quicker the convergence
+\end{tight_item}
+\begin{tight_enum}
+\item Find $\operatorname{CR} = \max{|\lambda_{i}|}$ for algorithm's convergence matrix
+\end{tight_enum}
+
+\section{Power Method for Dominant Eigenvalue}
+
+
+\section{QR Decomposition for Eigenvalues}
+\begin{tight_enum}
+\item \texttt{A = <A>}
+\item \texttt{\{q, r\} = QRDecomposition[A]}
+\item \texttt{\{q, r\} = N[QRDecomposition[r . Transpose[q]]]}
+\item Repeat 3 until it settles
+\item \texttt{Diagonal[Transpose[q] . r]} are the eigenvalues
+\end{tight_enum}
+
+\end{multicols*}
+}
+\end{document}
