@@ -55,7 +55,7 @@
 
 \begin{multicols*}{2}
 
-\section{Iterative Methods}
+\section{Iterative methods to solve $A\mathbf{x} = \mathbf{b}$}
 In the proceeding methods, start the algorithm with the following:
 \begin{tight_enum}
 \item \texttt{A = <A>}
@@ -93,17 +93,43 @@ Then enter algorithm code. Repeat algorithm code to make an iteration.
 \item Find $\operatorname{CR} = \max{|\lambda_{i}|}$ for algorithm's convergence matrix
 \end{tight_enum}
 
-\section{Power Method for Dominant Eigenvalue}
-
-
-\section{QR Decomposition for Eigenvalues}
+\section{Iterative methods to find eigenvalues}
+In the proceeding methods, start the algorithm with the following:
 \begin{tight_enum}
 \item \texttt{A = <A>}
-\item \texttt{\{q, r\} = QRDecomposition[A]}
-\item \texttt{\{q, r\} = N[QRDecomposition[r . Transpose[q]]]}
-\item Repeat 3 until it settles
-\item \texttt{Diagonal[Transpose[q] . r]} are the eigenvalues
 \end{tight_enum}
+Then enter algorithm code. Repeat algorithm code to make an iteration. After a
+certain iteration, you can check the eigenvalue with the eigenvalue code.
+
+\subsection{Power Method for Dominant Eigenvalue}
+\begin{tight_item}
+\item $\mathbf{u}^{n} = \frac{A\textbf{u}^{n-1}}{\|A\textbf{u}^{n-1}\|}$
+\item $ \mathbf{\lambda}_{\operatorname{dominant}} = \|A\mathbf{u} \| $
+\item "Dominant" means $\max{ | \lambda_{i} | }, \lambda_{i} \in \lambda$
+\end{tight_item}
+\begin{tight_enum}
+\item Assign \texttt{u = \{ \{1\}, \{1\}, \ldots, \{1\} \}}
+\item Proceed with algorithm code
+\end{tight_enum}
+\begin{tight_desc}
+\item[Algorithm Code]\texttt{u = N[(A.u)/Norm[A.u]]}
+\item[Eigenvalue Code] \texttt{Norm[A.u]} is the dominant eigenvalue
+\end{tight_desc}
+
+
+\subsection{QR Decomposition for Eigenvalues}
+\begin{tight_item}
+\item $A_{n} = R_{n-1} Q_{n-1}$
+\item $ \mathbf{\lambda} = \operatorname{diagonal}(A_{n})$
+\end{tight_item}
+\begin{tight_enum}
+\item Start with a standard QR Decomposition by \texttt{\{q, r\} = QRDecomposition[A]}
+\item Proceed with algorithm code
+\end{tight_enum}
+\begin{tight_desc}
+\item[Algorithm Code]\texttt{\{q, r\} = N[QRDecomposition[r . Transpose[q]]]}
+\item[Eigenvalue Code] \texttt{Diagonal[Transpose[q] . r]} are the eigenvalues
+\end{tight_desc}
 
 \end{multicols*}
 \end{document}
