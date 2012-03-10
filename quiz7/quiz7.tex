@@ -93,7 +93,7 @@ U = \begin{pmatrix}
 \subsection{Jacobi}
 \begin{tight_item}
 \item $\mathbf{x}^{n} = -D^{-1}(U + L)\mathbf{x}^{n-1}+ D^{-1}\mathbf{b}$
-\item $\operatorname{CR} = -D^{-1}(U+L)$
+\item $\operatorname{CR} = \max{|\lambda_{i}|} \in ((-D^{-1}(U+L)) - \lambda I) = \mathbf{0}$
 \end{tight_item}
 \begin{tight_desc}
 \item[Algorithm Code] \texttt{x = (-Inverse[DiagonalMatrix[Diagonal[A]]] .\\(UpperTriangularize[A, 1] + LowerTriangularize[A, -1]) . N[x]) +\\(Inverse[DiagonalMatrix[Diagonal[A]]] . b)}
@@ -103,7 +103,7 @@ U = \begin{pmatrix}
 \subsection{Gauss-Seidel}
 \begin{tight_item}
 \item $\mathbf{x}^{n} = (L+D)^{-1}(\mathbf{b}-U\mathbf{x}^{n-1})$
-\item $\operatorname{CR} = -(L+D)^{-1}U$
+\item $\operatorname{CR} = \max{|\lambda_{i}|} \in ((-(L+D)^{-1}U)) - \lambda I) = \mathbf{0}$
 \end{tight_item}
 \begin{tight_desc}
 \item[Algorithm Code] \texttt{x = (Inverse[LowerTriangularize[A, -1] +\\DiagonalMatrix[Diagonal[A]]]) .\\(b - (UpperTriangularize[A, 1] . N[x]))}
@@ -113,11 +113,10 @@ U = \begin{pmatrix}
 \subsection{Convergence Rate (CR)}
 \begin{tight_item}
 \item Measures rate of convergence per iteration of algorithm towards true values
+\item To find CR, find the dominant eigenvalue of the iteration matrix
+\item "Dominant" means $\max{ | \lambda_{i} | } \in \lambda$
 \item The greater the CR, the quicker the convergence
 \end{tight_item}
-\begin{tight_enum}
-\item Find $\operatorname{CR} = \max{|\lambda_{i}|}$ for algorithm's convergence matrix
-\end{tight_enum}
 
 \section{Iterative methods to find eigenvalues}
 \begin{tight_item}
@@ -133,7 +132,6 @@ certain iteration, you can check the eigenvalue with the eigenvalue code.
 \begin{tight_item}
 \item $\mathbf{u}^{n} = \frac{A\textbf{u}^{n-1}}{\|A\textbf{u}^{n-1}\|}$
 \item $ \mathbf{\lambda}_{\operatorname{dominant}} = \|A\mathbf{u} \| $
-\item "Dominant" means $\max{ | \lambda_{i} | }, \lambda_{i} \in \lambda$
 \end{tight_item}
 \begin{tight_enum}
 \item Assign \texttt{u = \{ \{1\}, \{1\}, \ldots, \{1\} \}}
