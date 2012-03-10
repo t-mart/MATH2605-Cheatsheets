@@ -56,7 +56,8 @@
 \begin{multicols*}{2}
 
 \section{Iterative methods to solve $A\mathbf{x} = \mathbf{b}$}
-In the proceeding methods, start the algorithm with the following:
+\begin{tight_item}
+\item In the proceeding methods, start the algorithm with the following:
 \begin{tight_enum}
 \item \texttt{A = <A>}
 \item \texttt{b = <b>}
@@ -64,9 +65,34 @@ In the proceeding methods, start the algorithm with the following:
 \end{tight_enum}
 Then enter algorithm code. Repeat algorithm code to make an iteration.
 
+\item Example of "L", "D", and "U":
+\begin{tight_item}
+\item $A = \begin{pmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+7 & 8 & 9
+\end{pmatrix}$
+\item $L = \begin{pmatrix}
+0 & 0 & 0 \\
+4 & 0 & 0 \\
+7 & 8 & 0
+\end{pmatrix},
+D = \begin{pmatrix}
+1 & 0 & 0 \\
+0 & 5 & 0 \\
+0 & 0 & 9
+\end{pmatrix},
+U = \begin{pmatrix}
+0 & 2 & 3 \\
+0 & 0 & 6 \\
+0 & 0 & 0
+\end{pmatrix}$
+\end{tight_item}
+\end{tight_item}
+
 \subsection{Jacobi}
 \begin{tight_item}
-\item $x^{n} = -D^{-1}(U + L)x^{n-1}+ D^{-1}b$
+\item $\mathbf{x}^{n} = -D^{-1}(U + L)\mathbf{x}^{n-1}+ D^{-1}\mathbf{b}$
 \item $\operatorname{CR} = -D^{-1}(U+L)$
 \end{tight_item}
 \begin{tight_desc}
@@ -76,7 +102,7 @@ Then enter algorithm code. Repeat algorithm code to make an iteration.
 
 \subsection{Gauss-Seidel}
 \begin{tight_item}
-\item $x^{n} = (L+D)^{-1}(b-Ux^{n-1})$
+\item $\mathbf{x}^{n} = (L+D)^{-1}(\mathbf{b}-U\mathbf{x}^{n-1})$
 \item $\operatorname{CR} = -(L+D)^{-1}U$
 \end{tight_item}
 \begin{tight_desc}
@@ -94,12 +120,14 @@ Then enter algorithm code. Repeat algorithm code to make an iteration.
 \end{tight_enum}
 
 \section{Iterative methods to find eigenvalues}
-In the proceeding methods, start the algorithm with the following:
+\begin{tight_item}
+\item In the proceeding methods, start the algorithm with the following:
 \begin{tight_enum}
 \item \texttt{A = <A>}
 \end{tight_enum}
 Then enter algorithm code. Repeat algorithm code to make an iteration. After a
 certain iteration, you can check the eigenvalue with the eigenvalue code.
+\end{tight_item}
 
 \subsection{Power Method for Dominant Eigenvalue}
 \begin{tight_item}
